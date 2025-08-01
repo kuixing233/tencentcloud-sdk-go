@@ -28,6 +28,21 @@ const (
 // It can be overridden for custom HTTP client configurations.
 var DefaultHttpClient *http.Client
 
+func SetDefaultHttpClientIdleConnTimeout(timeout time.Duration) {
+	transport := http.DefaultTransport
+	if _, ok := transport.(*http.Transport); ok {
+		// http.Transport.Clone is only available after go1.12
+		if cloneMethod, hasClone := reflect.TypeOf(transport).MethodByName("Clone"); hasClone {
+			cloned := cloneMethod.Func.Call([]reflect.Value{reflect.ValueOf(transport)})[0].Interface().(http.RoundTripper)
+			if clonedTransport, ok := cloned.(*http.Transport); ok {
+				clonedTransport.IdleConnTimeout = timeout
+				transport = clonedTransport
+			}
+		}
+	}
+	DefaultHttpClient = &http.Client{Transport: transport}
+}
+
 // Client encapsulates the core functionalities for interacting with Tencent Cloud services.
 type Client struct {
 	// The region to which the client is connected.
