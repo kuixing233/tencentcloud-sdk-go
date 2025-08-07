@@ -65,6 +65,12 @@ func getStringToSign(request tchttp.Request) string {
 	domain := request.GetDomain()
 	path := request.GetPath()
 
+	if headers := request.GetHeader(); headers != nil {
+		if host, exists := headers["Host"]; exists && host != "" {
+			domain = host
+		}
+	}
+
 	var buf bytes.Buffer
 	buf.WriteString(method)
 	buf.WriteString(domain)
