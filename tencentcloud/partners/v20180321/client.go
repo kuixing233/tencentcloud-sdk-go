@@ -88,6 +88,7 @@ func (c *Client) AgentPayDealsWithContext(ctx context.Context, request *AgentPay
     if request == nil {
         request = NewAgentPayDealsRequest()
     }
+    c.InitBaseRequest(&request.BaseRequest, "partners", APIVersion, "AgentPayDeals")
     
     if c.GetCredential() == nil {
         return nil, errors.New("AgentPayDeals require credential")
@@ -143,6 +144,7 @@ func (c *Client) AgentTransferMoneyWithContext(ctx context.Context, request *Age
     if request == nil {
         request = NewAgentTransferMoneyRequest()
     }
+    c.InitBaseRequest(&request.BaseRequest, "partners", APIVersion, "AgentTransferMoney")
     
     if c.GetCredential() == nil {
         return nil, errors.New("AgentTransferMoney require credential")
@@ -210,6 +212,7 @@ func (c *Client) AssignClientsToSalesWithContext(ctx context.Context, request *A
     if request == nil {
         request = NewAssignClientsToSalesRequest()
     }
+    c.InitBaseRequest(&request.BaseRequest, "partners", APIVersion, "AssignClientsToSales")
     
     if c.GetCredential() == nil {
         return nil, errors.New("AssignClientsToSales require credential")
@@ -263,6 +266,7 @@ func (c *Client) AuditApplyClientWithContext(ctx context.Context, request *Audit
     if request == nil {
         request = NewAuditApplyClientRequest()
     }
+    c.InitBaseRequest(&request.BaseRequest, "partners", APIVersion, "AuditApplyClient")
     
     if c.GetCredential() == nil {
         return nil, errors.New("AuditApplyClient require credential")
@@ -312,6 +316,7 @@ func (c *Client) CreatePayRelationForClientWithContext(ctx context.Context, requ
     if request == nil {
         request = NewCreatePayRelationForClientRequest()
     }
+    c.InitBaseRequest(&request.BaseRequest, "partners", APIVersion, "CreatePayRelationForClient")
     
     if c.GetCredential() == nil {
         return nil, errors.New("CreatePayRelationForClient require credential")
@@ -365,6 +370,7 @@ func (c *Client) DescribeAgentAuditedClientsWithContext(ctx context.Context, req
     if request == nil {
         request = NewDescribeAgentAuditedClientsRequest()
     }
+    c.InitBaseRequest(&request.BaseRequest, "partners", APIVersion, "DescribeAgentAuditedClients")
     
     if c.GetCredential() == nil {
         return nil, errors.New("DescribeAgentAuditedClients require credential")
@@ -416,6 +422,7 @@ func (c *Client) DescribeAgentBillsWithContext(ctx context.Context, request *Des
     if request == nil {
         request = NewDescribeAgentBillsRequest()
     }
+    c.InitBaseRequest(&request.BaseRequest, "partners", APIVersion, "DescribeAgentBills")
     
     if c.GetCredential() == nil {
         return nil, errors.New("DescribeAgentBills require credential")
@@ -471,6 +478,7 @@ func (c *Client) DescribeAgentClientGradeWithContext(ctx context.Context, reques
     if request == nil {
         request = NewDescribeAgentClientGradeRequest()
     }
+    c.InitBaseRequest(&request.BaseRequest, "partners", APIVersion, "DescribeAgentClientGrade")
     
     if c.GetCredential() == nil {
         return nil, errors.New("DescribeAgentClientGrade require credential")
@@ -522,6 +530,7 @@ func (c *Client) DescribeAgentClientsWithContext(ctx context.Context, request *D
     if request == nil {
         request = NewDescribeAgentClientsRequest()
     }
+    c.InitBaseRequest(&request.BaseRequest, "partners", APIVersion, "DescribeAgentClients")
     
     if c.GetCredential() == nil {
         return nil, errors.New("DescribeAgentClients require credential")
@@ -554,7 +563,9 @@ func NewDescribeAgentDealsByCacheResponse() (response *DescribeAgentDealsByCache
 }
 
 // DescribeAgentDealsByCache
-// 供代理商拉取缓存的全量预付费客户订单
+// 供代理商拉取全量预付费普通客户订单
+//
+// （对应控制台：客户订单-预付费-普通订单）
 //
 // 可能返回的错误码:
 //  FAILEDOPERATION = "FailedOperation"
@@ -566,7 +577,9 @@ func (c *Client) DescribeAgentDealsByCache(request *DescribeAgentDealsByCacheReq
 }
 
 // DescribeAgentDealsByCache
-// 供代理商拉取缓存的全量预付费客户订单
+// 供代理商拉取全量预付费普通客户订单
+//
+// （对应控制台：客户订单-预付费-普通订单）
 //
 // 可能返回的错误码:
 //  FAILEDOPERATION = "FailedOperation"
@@ -577,6 +590,7 @@ func (c *Client) DescribeAgentDealsByCacheWithContext(ctx context.Context, reque
     if request == nil {
         request = NewDescribeAgentDealsByCacheRequest()
     }
+    c.InitBaseRequest(&request.BaseRequest, "partners", APIVersion, "DescribeAgentDealsByCache")
     
     if c.GetCredential() == nil {
         return nil, errors.New("DescribeAgentDealsByCache require credential")
@@ -632,6 +646,7 @@ func (c *Client) DescribeAgentDealsPriceDetailByDealNameWithContext(ctx context.
     if request == nil {
         request = NewDescribeAgentDealsPriceDetailByDealNameRequest()
     }
+    c.InitBaseRequest(&request.BaseRequest, "partners", APIVersion, "DescribeAgentDealsPriceDetailByDealName")
     
     if c.GetCredential() == nil {
         return nil, errors.New("DescribeAgentDealsPriceDetailByDealName require credential")
@@ -687,6 +702,7 @@ func (c *Client) DescribeAgentPayDealsV2WithContext(ctx context.Context, request
     if request == nil {
         request = NewDescribeAgentPayDealsV2Request()
     }
+    c.InitBaseRequest(&request.BaseRequest, "partners", APIVersion, "DescribeAgentPayDealsV2")
     
     if c.GetCredential() == nil {
         return nil, errors.New("DescribeAgentPayDealsV2 require credential")
@@ -742,6 +758,7 @@ func (c *Client) DescribeAgentRelateBigDealIdsWithContext(ctx context.Context, r
     if request == nil {
         request = NewDescribeAgentRelateBigDealIdsRequest()
     }
+    c.InitBaseRequest(&request.BaseRequest, "partners", APIVersion, "DescribeAgentRelateBigDealIds")
     
     if c.GetCredential() == nil {
         return nil, errors.New("DescribeAgentRelateBigDealIds require credential")
@@ -797,6 +814,7 @@ func (c *Client) DescribeAgentSelfPayDealsV2WithContext(ctx context.Context, req
     if request == nil {
         request = NewDescribeAgentSelfPayDealsV2Request()
     }
+    c.InitBaseRequest(&request.BaseRequest, "partners", APIVersion, "DescribeAgentSelfPayDealsV2")
     
     if c.GetCredential() == nil {
         return nil, errors.New("DescribeAgentSelfPayDealsV2 require credential")
@@ -852,6 +870,7 @@ func (c *Client) DescribeClientBalanceNewWithContext(ctx context.Context, reques
     if request == nil {
         request = NewDescribeClientBalanceNewRequest()
     }
+    c.InitBaseRequest(&request.BaseRequest, "partners", APIVersion, "DescribeClientBalanceNew")
     
     if c.GetCredential() == nil {
         return nil, errors.New("DescribeClientBalanceNew require credential")
@@ -905,6 +924,7 @@ func (c *Client) DescribeClientJoinIncreaseListWithContext(ctx context.Context, 
     if request == nil {
         request = NewDescribeClientJoinIncreaseListRequest()
     }
+    c.InitBaseRequest(&request.BaseRequest, "partners", APIVersion, "DescribeClientJoinIncreaseList")
     
     if c.GetCredential() == nil {
         return nil, errors.New("DescribeClientJoinIncreaseList require credential")
@@ -958,6 +978,7 @@ func (c *Client) DescribeClientSwitchTraTaskInfoWithContext(ctx context.Context,
     if request == nil {
         request = NewDescribeClientSwitchTraTaskInfoRequest()
     }
+    c.InitBaseRequest(&request.BaseRequest, "partners", APIVersion, "DescribeClientSwitchTraTaskInfo")
     
     if c.GetCredential() == nil {
         return nil, errors.New("DescribeClientSwitchTraTaskInfo require credential")
@@ -1011,6 +1032,7 @@ func (c *Client) DescribeRebateInfosWithContext(ctx context.Context, request *De
     if request == nil {
         request = NewDescribeRebateInfosRequest()
     }
+    c.InitBaseRequest(&request.BaseRequest, "partners", APIVersion, "DescribeRebateInfos")
     
     if c.GetCredential() == nil {
         return nil, errors.New("DescribeRebateInfos require credential")
@@ -1062,6 +1084,7 @@ func (c *Client) DescribeRebateInfosNewWithContext(ctx context.Context, request 
     if request == nil {
         request = NewDescribeRebateInfosNewRequest()
     }
+    c.InitBaseRequest(&request.BaseRequest, "partners", APIVersion, "DescribeRebateInfosNew")
     
     if c.GetCredential() == nil {
         return nil, errors.New("DescribeRebateInfosNew require credential")
@@ -1117,6 +1140,7 @@ func (c *Client) DescribeSalesmansWithContext(ctx context.Context, request *Desc
     if request == nil {
         request = NewDescribeSalesmansRequest()
     }
+    c.InitBaseRequest(&request.BaseRequest, "partners", APIVersion, "DescribeSalesmans")
     
     if c.GetCredential() == nil {
         return nil, errors.New("DescribeSalesmans require credential")
@@ -1172,6 +1196,7 @@ func (c *Client) DescribeUnbindClientListWithContext(ctx context.Context, reques
     if request == nil {
         request = NewDescribeUnbindClientListRequest()
     }
+    c.InitBaseRequest(&request.BaseRequest, "partners", APIVersion, "DescribeUnbindClientList")
     
     if c.GetCredential() == nil {
         return nil, errors.New("DescribeUnbindClientList require credential")
@@ -1223,6 +1248,7 @@ func (c *Client) ModifyClientRemarkWithContext(ctx context.Context, request *Mod
     if request == nil {
         request = NewModifyClientRemarkRequest()
     }
+    c.InitBaseRequest(&request.BaseRequest, "partners", APIVersion, "ModifyClientRemark")
     
     if c.GetCredential() == nil {
         return nil, errors.New("ModifyClientRemark require credential")
@@ -1272,6 +1298,7 @@ func (c *Client) RemovePayRelationForClientWithContext(ctx context.Context, requ
     if request == nil {
         request = NewRemovePayRelationForClientRequest()
     }
+    c.InitBaseRequest(&request.BaseRequest, "partners", APIVersion, "RemovePayRelationForClient")
     
     if c.GetCredential() == nil {
         return nil, errors.New("RemovePayRelationForClient require credential")

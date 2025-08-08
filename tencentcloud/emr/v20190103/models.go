@@ -3701,7 +3701,7 @@ type DescribeHBaseTableOverviewRequestParams struct {
 	// 实例ID
 	InstanceId *string `json:"InstanceId,omitnil,omitempty" name:"InstanceId"`
 
-	// 分页查询编号偏移量，从0开始	
+	// 页码，第一页:0，第二页:1
 	Offset *int64 `json:"Offset,omitnil,omitempty" name:"Offset"`
 
 	// 分页查询时的分页大小，最小1，最大100
@@ -3723,7 +3723,7 @@ type DescribeHBaseTableOverviewRequest struct {
 	// 实例ID
 	InstanceId *string `json:"InstanceId,omitnil,omitempty" name:"InstanceId"`
 
-	// 分页查询编号偏移量，从0开始	
+	// 页码，第一页:0，第二页:1
 	Offset *int64 `json:"Offset,omitnil,omitempty" name:"Offset"`
 
 	// 分页查询时的分页大小，最小1，最大100
@@ -4106,6 +4106,9 @@ type DescribeInsightListRequestParams struct {
 
 	// 查询类型,支持HIVE,SPARK,DLC_SPARK,SPARK_SQL,SCHEDULE,MAPREDUCE,TRINO等类型,默认查询全部
 	Type *string `json:"Type,omitnil,omitempty" name:"Type"`
+
+	// 是否包含具体参数建议等信息
+	MustHasContext *bool `json:"MustHasContext,omitnil,omitempty" name:"MustHasContext"`
 }
 
 type DescribeInsightListRequest struct {
@@ -4128,6 +4131,9 @@ type DescribeInsightListRequest struct {
 
 	// 查询类型,支持HIVE,SPARK,DLC_SPARK,SPARK_SQL,SCHEDULE,MAPREDUCE,TRINO等类型,默认查询全部
 	Type *string `json:"Type,omitnil,omitempty" name:"Type"`
+
+	// 是否包含具体参数建议等信息
+	MustHasContext *bool `json:"MustHasContext,omitnil,omitempty" name:"MustHasContext"`
 }
 
 func (r *DescribeInsightListRequest) ToJsonString() string {
@@ -4148,6 +4154,7 @@ func (r *DescribeInsightListRequest) FromJsonString(s string) error {
 	delete(f, "PageSize")
 	delete(f, "Page")
 	delete(f, "Type")
+	delete(f, "MustHasContext")
 	if len(f) > 0 {
 		return tcerr.NewTencentCloudSDKError("ClientError.BuildRequestError", "DescribeInsightListRequest has unknown keys!", "")
 	}
@@ -12554,6 +12561,9 @@ type StageInfoDetail struct {
 
 	// 步骤耗时
 	TimeConsuming *string `json:"TimeConsuming,omitnil,omitempty" name:"TimeConsuming"`
+
+	// id，前端用
+	Id *int64 `json:"Id,omitnil,omitempty" name:"Id"`
 }
 
 type StarRocksQueryInfo struct {

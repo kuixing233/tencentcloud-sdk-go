@@ -143,6 +143,13 @@ type ConsumeGroupItem struct {
 	// 4.x的完整命名空间
 	// 注意：此字段可能返回 null，表示取不到有效值。
 	FullNamespaceV4 *string `json:"FullNamespaceV4,omitnil,omitempty" name:"FullNamespaceV4"`
+
+	// 订阅的主题个数
+	SubscribeTopicNum *int64 `json:"SubscribeTopicNum,omitnil,omitempty" name:"SubscribeTopicNum"`
+
+	// 1753153590
+	// 注意：此字段可能返回 null，表示取不到有效值。
+	CreateTime *int64 `json:"CreateTime,omitnil,omitempty" name:"CreateTime"`
 }
 
 type ConsumerClient struct {
@@ -294,14 +301,14 @@ type CreateInstanceRequestParams struct {
 	// 商品规格，从 [DescribeProductSKUs](https://cloud.tencent.com/document/api/1493/107676) 接口中的 [ProductSKU](https://cloud.tencent.com/document/api/1493/96031#ProductSKU) 出参获得。
 	SkuCode *string `json:"SkuCode,omitnil,omitempty" name:"SkuCode"`
 
+	// 集群绑定的VPC信息
+	VpcList []*VpcInfo `json:"VpcList,omitnil,omitempty" name:"VpcList"`
+
 	// 备注信息
 	Remark *string `json:"Remark,omitnil,omitempty" name:"Remark"`
 
 	// 标签列表
 	TagList []*Tag `json:"TagList,omitnil,omitempty" name:"TagList"`
-
-	// 集群绑定的VPC信息，必填
-	VpcList []*VpcInfo `json:"VpcList,omitnil,omitempty" name:"VpcList"`
 
 	// 是否开启公网，默认值为false表示不开启
 	EnablePublic *bool `json:"EnablePublic,omitnil,omitempty" name:"EnablePublic"`
@@ -361,14 +368,14 @@ type CreateInstanceRequest struct {
 	// 商品规格，从 [DescribeProductSKUs](https://cloud.tencent.com/document/api/1493/107676) 接口中的 [ProductSKU](https://cloud.tencent.com/document/api/1493/96031#ProductSKU) 出参获得。
 	SkuCode *string `json:"SkuCode,omitnil,omitempty" name:"SkuCode"`
 
+	// 集群绑定的VPC信息
+	VpcList []*VpcInfo `json:"VpcList,omitnil,omitempty" name:"VpcList"`
+
 	// 备注信息
 	Remark *string `json:"Remark,omitnil,omitempty" name:"Remark"`
 
 	// 标签列表
 	TagList []*Tag `json:"TagList,omitnil,omitempty" name:"TagList"`
-
-	// 集群绑定的VPC信息，必填
-	VpcList []*VpcInfo `json:"VpcList,omitnil,omitempty" name:"VpcList"`
 
 	// 是否开启公网，默认值为false表示不开启
 	EnablePublic *bool `json:"EnablePublic,omitnil,omitempty" name:"EnablePublic"`
@@ -423,9 +430,9 @@ func (r *CreateInstanceRequest) FromJsonString(s string) error {
 	delete(f, "InstanceType")
 	delete(f, "Name")
 	delete(f, "SkuCode")
+	delete(f, "VpcList")
 	delete(f, "Remark")
 	delete(f, "TagList")
-	delete(f, "VpcList")
 	delete(f, "EnablePublic")
 	delete(f, "BillingFlow")
 	delete(f, "Bandwidth")
@@ -1778,6 +1785,16 @@ type DescribeConsumerGroupListRequestParams struct {
 
 	// 查询指定主题下的消费组
 	FromTopic *string `json:"FromTopic,omitnil,omitempty" name:"FromTopic"`
+
+	// 按照指定字段排序，枚举值如下：
+	// - subscribeNum：订阅 Topic 个数
+	SortedBy *string `json:"SortedBy,omitnil,omitempty" name:"SortedBy"`
+
+	// 按升序或降序排列，枚举值如下：
+	// 
+	// - asc：升序
+	// - desc：降序
+	SortOrder *string `json:"SortOrder,omitnil,omitempty" name:"SortOrder"`
 }
 
 type DescribeConsumerGroupListRequest struct {
@@ -1797,6 +1814,16 @@ type DescribeConsumerGroupListRequest struct {
 
 	// 查询指定主题下的消费组
 	FromTopic *string `json:"FromTopic,omitnil,omitempty" name:"FromTopic"`
+
+	// 按照指定字段排序，枚举值如下：
+	// - subscribeNum：订阅 Topic 个数
+	SortedBy *string `json:"SortedBy,omitnil,omitempty" name:"SortedBy"`
+
+	// 按升序或降序排列，枚举值如下：
+	// 
+	// - asc：升序
+	// - desc：降序
+	SortOrder *string `json:"SortOrder,omitnil,omitempty" name:"SortOrder"`
 }
 
 func (r *DescribeConsumerGroupListRequest) ToJsonString() string {
@@ -1816,6 +1843,8 @@ func (r *DescribeConsumerGroupListRequest) FromJsonString(s string) error {
 	delete(f, "Offset")
 	delete(f, "Limit")
 	delete(f, "FromTopic")
+	delete(f, "SortedBy")
+	delete(f, "SortOrder")
 	if len(f) > 0 {
 		return tcerr.NewTencentCloudSDKError("ClientError.BuildRequestError", "DescribeConsumerGroupListRequest has unknown keys!", "")
 	}

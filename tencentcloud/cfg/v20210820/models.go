@@ -203,6 +203,9 @@ type CreateTaskFromActionRequestParams struct {
 
 	// 演练自动暂停时间，单位分钟, 不填则默认为60
 	TaskPauseDuration *uint64 `json:"TaskPauseDuration,omitnil,omitempty" name:"TaskPauseDuration"`
+
+	// 标签列表
+	TaskTags []*TagWithCreate `json:"TaskTags,omitnil,omitempty" name:"TaskTags"`
 }
 
 type CreateTaskFromActionRequest struct {
@@ -228,6 +231,9 @@ type CreateTaskFromActionRequest struct {
 
 	// 演练自动暂停时间，单位分钟, 不填则默认为60
 	TaskPauseDuration *uint64 `json:"TaskPauseDuration,omitnil,omitempty" name:"TaskPauseDuration"`
+
+	// 标签列表
+	TaskTags []*TagWithCreate `json:"TaskTags,omitnil,omitempty" name:"TaskTags"`
 }
 
 func (r *CreateTaskFromActionRequest) ToJsonString() string {
@@ -249,6 +255,7 @@ func (r *CreateTaskFromActionRequest) FromJsonString(s string) error {
 	delete(f, "TaskActionGeneralConfiguration")
 	delete(f, "TaskActionCustomConfiguration")
 	delete(f, "TaskPauseDuration")
+	delete(f, "TaskTags")
 	if len(f) > 0 {
 		return tcerr.NewTencentCloudSDKError("ClientError.BuildRequestError", "CreateTaskFromActionRequest has unknown keys!", "")
 	}
@@ -2140,6 +2147,9 @@ type TaskTarget struct {
 
 	// 1:平台 2:用户个人
 	Source *int64 `json:"Source,omitnil,omitempty" name:"Source"`
+
+	// 目标标签是否已被删除
+	TargetStatus *int64 `json:"TargetStatus,omitnil,omitempty" name:"TargetStatus"`
 }
 
 type Template struct {

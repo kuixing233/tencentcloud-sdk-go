@@ -135,6 +135,9 @@ type ApmField struct {
 
 	// 同比指标值，已弃用，不建议使用
 	CompareVal *string `json:"CompareVal,omitnil,omitempty" name:"CompareVal"`
+
+	// 指标中文名
+	NameCN *string `json:"NameCN,omitnil,omitempty" name:"NameCN"`
 }
 
 type ApmInstanceDetail struct {
@@ -305,6 +308,12 @@ type ApmInstanceDetail struct {
 
 	// 业务系统鉴权 token
 	Token *string `json:"Token,omitnil,omitempty" name:"Token"`
+
+	// URL长分段收敛阈值
+	UrlLongSegmentThreshold *int64 `json:"UrlLongSegmentThreshold,omitnil,omitempty" name:"UrlLongSegmentThreshold"`
+
+	// URL数字分段收敛阈值
+	UrlNumberSegmentThreshold *int64 `json:"UrlNumberSegmentThreshold,omitnil,omitempty" name:"UrlNumberSegmentThreshold"`
 }
 
 type ApmMetricRecord struct {
@@ -1725,6 +1734,12 @@ type ModifyApmInstanceRequestParams struct {
 
 	// 是否开启反序列化检测（0-关闭，1-开启）
 	IsDeserializationAnalysis *int64 `json:"IsDeserializationAnalysis,omitnil,omitempty" name:"IsDeserializationAnalysis"`
+
+	// URL长分段收敛阈值
+	UrlLongSegmentThreshold *int64 `json:"UrlLongSegmentThreshold,omitnil,omitempty" name:"UrlLongSegmentThreshold"`
+
+	// URL数字分段收敛阈值
+	UrlNumberSegmentThreshold *int64 `json:"UrlNumberSegmentThreshold,omitnil,omitempty" name:"UrlNumberSegmentThreshold"`
 }
 
 type ModifyApmInstanceRequest struct {
@@ -1849,6 +1864,12 @@ type ModifyApmInstanceRequest struct {
 
 	// 是否开启反序列化检测（0-关闭，1-开启）
 	IsDeserializationAnalysis *int64 `json:"IsDeserializationAnalysis,omitnil,omitempty" name:"IsDeserializationAnalysis"`
+
+	// URL长分段收敛阈值
+	UrlLongSegmentThreshold *int64 `json:"UrlLongSegmentThreshold,omitnil,omitempty" name:"UrlLongSegmentThreshold"`
+
+	// URL数字分段收敛阈值
+	UrlNumberSegmentThreshold *int64 `json:"UrlNumberSegmentThreshold,omitnil,omitempty" name:"UrlNumberSegmentThreshold"`
 }
 
 func (r *ModifyApmInstanceRequest) ToJsonString() string {
@@ -1903,6 +1924,8 @@ func (r *ModifyApmInstanceRequest) FromJsonString(s string) error {
 	delete(f, "IsJNIInjectionAnalysis")
 	delete(f, "IsWebshellBackdoorAnalysis")
 	delete(f, "IsDeserializationAnalysis")
+	delete(f, "UrlLongSegmentThreshold")
+	delete(f, "UrlNumberSegmentThreshold")
 	if len(f) > 0 {
 		return tcerr.NewTencentCloudSDKError("ClientError.BuildRequestError", "ModifyApmInstanceRequest has unknown keys!", "")
 	}
