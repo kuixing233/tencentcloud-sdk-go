@@ -22,12 +22,17 @@ func main() {
 	cpf := profile.NewClientProfile()
 	cpf.HttpProfile.ReqMethod = "GET"
 	cpf.HttpProfile.ReqTimeout = 5
+	cpf.HttpProfile.Endpoint = "cvm.tencentcloudapi.com/tencentcdn"
+	cpf.HttpProfile.Scheme = "HTTPS"
 	cpf.Debug = true
 
 	// 实例化要请求产品(以cvm为例)的client对象
 	client, _ := cvm.NewClient(credential, "ap-beijing", cpf)
 	// 实例化一个请求对象，根据调用的接口和实际情况，可以进一步设置请求参数
 	request := cvm.NewDescribeZonesRequest()
+	request.SetHeader(map[string]string{
+		"Host": "cvm.tencentcloudapi.com",
+	})
 	// 通过client对象调用想要访问的接口，需要传入请求对象
 	response, err := client.DescribeZones(request)
 	// 处理异常
