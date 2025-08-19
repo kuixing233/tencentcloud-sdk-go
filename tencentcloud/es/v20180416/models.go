@@ -4211,6 +4211,14 @@ func (r *GetRequestTargetNodeTypesResponse) FromJsonString(s string) error {
 	return json.Unmarshal([]byte(s), &r)
 }
 
+type GpuInfo struct {
+	// Gpu块数
+	GpuCount *int64 `json:"GpuCount,omitnil,omitempty" name:"GpuCount"`
+
+	// Gpu类型
+	GpuType *string `json:"GpuType,omitnil,omitempty" name:"GpuType"`
+}
+
 type IndexMetaField struct {
 	// 索引类型
 	// 注意：此字段可能返回 null，表示取不到有效值。
@@ -4843,6 +4851,12 @@ type InstanceInfo struct {
 	// 开启集群保护：OPEN-开启，CLOSE-关闭
 	// 注意：此字段可能返回 null，表示取不到有效值。
 	EnableDestroyProtection *string `json:"EnableDestroyProtection,omitnil,omitempty" name:"EnableDestroyProtection"`
+
+	// kibana内网访问地址
+	ShowKibanaIpPort *string `json:"ShowKibanaIpPort,omitnil,omitempty" name:"ShowKibanaIpPort"`
+
+	// 是否为CDZLite可用区
+	IsCdzLite *bool `json:"IsCdzLite,omitnil,omitempty" name:"IsCdzLite"`
 }
 
 type InstanceLog struct {
@@ -5341,6 +5355,10 @@ type NodeInfo struct {
 	// /
 	// 注意：此字段可能返回 null，表示取不到有效值。
 	DiskEnhance *int64 `json:"DiskEnhance,omitnil,omitempty" name:"DiskEnhance"`
+
+	// 节点Gpu信息
+	// 注意：此字段可能返回 null，表示取不到有效值。
+	GpuInfo *GpuInfo `json:"GpuInfo,omitnil,omitempty" name:"GpuInfo"`
 }
 
 type NodeView struct {
@@ -5773,6 +5791,9 @@ type RestartNodesRequestParams struct {
 
 	// 置放群组异步任务时间段
 	EnableScheduleOperationDuration *EnableScheduleOperationDuration `json:"EnableScheduleOperationDuration,omitnil,omitempty" name:"EnableScheduleOperationDuration"`
+
+	// 事件id列表
+	EventTypeIds []*string `json:"EventTypeIds,omitnil,omitempty" name:"EventTypeIds"`
 }
 
 type RestartNodesRequest struct {
@@ -5807,6 +5828,9 @@ type RestartNodesRequest struct {
 
 	// 置放群组异步任务时间段
 	EnableScheduleOperationDuration *EnableScheduleOperationDuration `json:"EnableScheduleOperationDuration,omitnil,omitempty" name:"EnableScheduleOperationDuration"`
+
+	// 事件id列表
+	EventTypeIds []*string `json:"EventTypeIds,omitnil,omitempty" name:"EventTypeIds"`
 }
 
 func (r *RestartNodesRequest) ToJsonString() string {
@@ -5831,6 +5855,7 @@ func (r *RestartNodesRequest) FromJsonString(s string) error {
 	delete(f, "ShardAllocationBytes")
 	delete(f, "EnableScheduleRecoverGroup")
 	delete(f, "EnableScheduleOperationDuration")
+	delete(f, "EventTypeIds")
 	if len(f) > 0 {
 		return tcerr.NewTencentCloudSDKError("ClientError.BuildRequestError", "RestartNodesRequest has unknown keys!", "")
 	}
