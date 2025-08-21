@@ -529,6 +529,8 @@ func (c *Client) sendWithSignatureV3(request tchttp.Request, response tchttp.Res
 	}
 
 	// httpRequest.Host = headers["Host"]
+	// httpRequest.URL.Host = headers["Host"]
+	// httpRequest.URL.Path = "/"
 
 	// Send the HTTP request with rate limit retry logic.
 	httpResponse, err := c.sendWithRateLimitRetry(httpRequest, isRetryable(request))

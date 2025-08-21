@@ -22,7 +22,17 @@ func main() {
 	cpf := profile.NewClientProfile()
 	cpf.HttpProfile.ReqMethod = "GET"
 	cpf.HttpProfile.ReqTimeout = 5
-	cpf.HttpProfile.Endpoint = "cvm.tencentcloudapi.com/tencentcdn"
+	// cpf.HttpProfile.Endpoint = "localhost:9091" // 需设置request.SetHeader
+	// cpf.HttpProfile.Endpoint = "localhost:9091/"           // 需设置request.SetHeader
+	cpf.HttpProfile.Endpoint = "localhost:9091/tencentcdn/" // 需改配置
+	// cpf.HttpProfile.Endpoint = "cvm.tencentcloud.com" // 需改配置
+	// cpf.HttpProfile.Endpoint = "cvm.tencentcloud.com:9091" // 需改配置
+	// cpf.HttpProfile.Endpoint = "cvm.tencentcloud.com:9091/tencentcdn" // 需改配置
+	// cpf.HttpProfile.Endpoint = "xxx:9091" // 需改配置
+
+	// cpf.HttpProfile.ApigwEndpoint = "localhost:9091/tencentcdn"
+	// cpf.HttpProfile.Endpoint = "cvm.tencentcloudapi.com:9091"
+
 	cpf.HttpProfile.Scheme = "HTTPS"
 	cpf.Debug = true
 
