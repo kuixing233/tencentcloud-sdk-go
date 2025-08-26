@@ -14,27 +14,25 @@ import (
 	"github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/common"
 )
 
-var (
-	lastTimestamp     int64
-	lastTimestampTime time.Time
-	timestampMutex    sync.Mutex
-)
-
-func getTimestamp() int64 {
-	timestampMutex.Lock()
-	defer timestampMutex.Unlock()
-
-	now := time.Now()
-	if now.Sub(lastTimestampTime) < time.Second {
-		return lastTimestamp
-	}
-
-	lastTimestamp = now.Unix()
-	lastTimestampTime = now
-	return lastTimestamp
+type mockMetadataTransport struct {
+	mu         sync.Mutex
+	lastTs     int64
+	lastTsTime time.Time
 }
 
-type mockMetadataTransport struct{}
+func (m *mockMetadataTransport) getTimestamp() int64 {
+	m.mu.Lock()
+	defer m.mu.Unlock()
+
+	now := time.Now()
+	if now.Sub(m.lastTsTime) < time.Second {
+		return m.lastTs
+	}
+
+	m.lastTs = now.Unix()
+	m.lastTsTime = now
+	return m.lastTs
+}
 
 func (m *mockMetadataTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 	url := req.URL.String()
@@ -49,7 +47,7 @@ func (m *mockMetadataTransport) RoundTrip(req *http.Request) (*http.Response, er
 	}
 
 	if strings.HasSuffix(url, "/cam/security-credentials/mock-role") {
-		n := getTimestamp()
+		n := m.getTimestamp()
 		expireTime := n + 1
 		resp := fmt.Sprintf(`{
 			"TmpSecretId": "%d",
@@ -63,7 +61,7 @@ func (m *mockMetadataTransport) RoundTrip(req *http.Request) (*http.Response, er
 	}
 
 	if strings.Contains(url, "sts.tencentcloudapi.com") {
-		n := getTimestamp()
+		n := m.getTimestamp()
 		expire := time.Now().Add(time.Second)
 		resp := fmt.Sprintf(`{
 			"Response": {
