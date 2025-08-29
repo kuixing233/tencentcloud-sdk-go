@@ -1955,9 +1955,7 @@ func NewGeneralAccurateOCRResponse() (response *GeneralAccurateOCRResponse) {
 //
 //           <th >【荐】通用印刷体识别（高精度版）</th>
 //
-//           <th style="width:200px"><a href="https://cloud.tencent.com/document/product/866/33526">【荐】通用印刷体识别</a></th>
-//
-//           <th><a href="https://cloud.tencent.com/document/product/866/37831">通用印刷体识别（精简版）</a></th>
+//           <th style="width:300px"><a href="https://cloud.tencent.com/document/product/866/33526">【荐】通用印刷体识别</a></th>
 //
 //         </tr>
 //
@@ -1973,8 +1971,6 @@ func NewGeneralAccurateOCRResponse() (response *GeneralAccurateOCRResponse) {
 //
 //           <td>适用于所有通用场景的印刷体识别</td>
 //
-//           <td>适用于快速文本识别场景，准召率有一定损失，价格更优惠</td>
-//
 //         </tr>
 //
 //         <tr>
@@ -1985,15 +1981,11 @@ func NewGeneralAccurateOCRResponse() (response *GeneralAccurateOCRResponse) {
 //
 //           <td>96%</td>
 //
-//           <td>91%</td>
-//
 //         </tr>
 //
 //         <tr>
 //
 //           <td>价格</td>
-//
-//           <td>高</td>
 //
 //           <td>中</td>
 //
@@ -2005,11 +1997,9 @@ func NewGeneralAccurateOCRResponse() (response *GeneralAccurateOCRResponse) {
 //
 //           <td>支持的语言</td>
 //
-//           <td>中文、英文、中英文</td>
+//           <td>中文、英文、中英文、泰语、印尼语、日语、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、哈萨克语</td>
 //
 //           <td>中文、英文、中英文、日语、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、泰语</td>  
-//
-//           <td>中文、英文、中英文</td>
 //
 //         </tr>
 //
@@ -2017,9 +2007,7 @@ func NewGeneralAccurateOCRResponse() (response *GeneralAccurateOCRResponse) {
 //
 //           <td>自动语言检测</td>
 //
-//           <td>支持</td>
-//
-//           <td>支持</td>  
+//           <td>中英文支持;其他语言需要调整输入参数</td>
 //
 //           <td>支持</td>
 //
@@ -2033,15 +2021,11 @@ func NewGeneralAccurateOCRResponse() (response *GeneralAccurateOCRResponse) {
 //
 //           <td>支持</td>
 //
-//           <td>支持</td>
-//
 //         </tr>
 //
 //         <tr>
 //
 //           <td>自动旋转纠正</td>
-//
-//           <td>支持旋转识别，返回角度信息</td>
 //
 //           <td>支持旋转识别，返回角度信息</td>
 //
@@ -2103,9 +2087,7 @@ func (c *Client) GeneralAccurateOCR(request *GeneralAccurateOCRRequest) (respons
 //
 //           <th >【荐】通用印刷体识别（高精度版）</th>
 //
-//           <th style="width:200px"><a href="https://cloud.tencent.com/document/product/866/33526">【荐】通用印刷体识别</a></th>
-//
-//           <th><a href="https://cloud.tencent.com/document/product/866/37831">通用印刷体识别（精简版）</a></th>
+//           <th style="width:300px"><a href="https://cloud.tencent.com/document/product/866/33526">【荐】通用印刷体识别</a></th>
 //
 //         </tr>
 //
@@ -2121,8 +2103,6 @@ func (c *Client) GeneralAccurateOCR(request *GeneralAccurateOCRRequest) (respons
 //
 //           <td>适用于所有通用场景的印刷体识别</td>
 //
-//           <td>适用于快速文本识别场景，准召率有一定损失，价格更优惠</td>
-//
 //         </tr>
 //
 //         <tr>
@@ -2133,15 +2113,11 @@ func (c *Client) GeneralAccurateOCR(request *GeneralAccurateOCRRequest) (respons
 //
 //           <td>96%</td>
 //
-//           <td>91%</td>
-//
 //         </tr>
 //
 //         <tr>
 //
 //           <td>价格</td>
-//
-//           <td>高</td>
 //
 //           <td>中</td>
 //
@@ -2153,11 +2129,9 @@ func (c *Client) GeneralAccurateOCR(request *GeneralAccurateOCRRequest) (respons
 //
 //           <td>支持的语言</td>
 //
-//           <td>中文、英文、中英文</td>
+//           <td>中文、英文、中英文、泰语、印尼语、日语、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、哈萨克语</td>
 //
 //           <td>中文、英文、中英文、日语、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、泰语</td>  
-//
-//           <td>中文、英文、中英文</td>
 //
 //         </tr>
 //
@@ -2165,9 +2139,7 @@ func (c *Client) GeneralAccurateOCR(request *GeneralAccurateOCRRequest) (respons
 //
 //           <td>自动语言检测</td>
 //
-//           <td>支持</td>
-//
-//           <td>支持</td>  
+//           <td>中英文支持;其他语言需要调整输入参数</td>
 //
 //           <td>支持</td>
 //
@@ -2181,15 +2153,11 @@ func (c *Client) GeneralAccurateOCR(request *GeneralAccurateOCRRequest) (respons
 //
 //           <td>支持</td>
 //
-//           <td>支持</td>
-//
 //         </tr>
 //
 //         <tr>
 //
 //           <td>自动旋转纠正</td>
-//
-//           <td>支持旋转识别，返回角度信息</td>
 //
 //           <td>支持旋转识别，返回角度信息</td>
 //
@@ -2281,11 +2249,9 @@ func NewGeneralBasicOCRResponse() (response *GeneralBasicOCRResponse) {
 //
 //           <th style="width:150px"></th>
 //
-//           <th style="width:200px">【荐】通用印刷体识别</th>
+//           <th style="width:250px">【荐】通用印刷体识别</th>
 //
 //           <th ><a href="https://cloud.tencent.com/document/product/866/34937">【荐】通用印刷体识别（高精度版）</a></th>
-//
-//           <th><a href="https://cloud.tencent.com/document/product/866/37831">通用印刷体识别（精简版）</a></th>
 //
 //         </tr>
 //
@@ -2301,8 +2267,6 @@ func NewGeneralBasicOCRResponse() (response *GeneralBasicOCRResponse) {
 //
 //           <td>适用于文字较多、长串数字、小字、模糊字、倾斜文本等困难场景</td>
 //
-//           <td>适用于快速文本识别场景，准召率有一定损失，价格更优惠</td>
-//
 //         </tr>
 //
 //         <tr>
@@ -2313,19 +2277,15 @@ func NewGeneralBasicOCRResponse() (response *GeneralBasicOCRResponse) {
 //
 //           <td>99%</td>
 //
-//           <td>91%</td>
-//
 //         </tr>
 //
 //         <tr>
 //
 //           <td>价格</td>
 //
-//           <td>中</td>
-//
-//           <td>高</td>
-//
 //           <td>低</td>
+//
+//           <td>中</td>
 //
 //         </tr>
 //
@@ -2335,9 +2295,7 @@ func NewGeneralBasicOCRResponse() (response *GeneralBasicOCRResponse) {
 //
 //           <td>中文、英文、中英文、日语、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、泰语</td>
 //
-//           <td>中文、英文、中英文</td>
-//
-//           <td>中文、英文、中英文</td>
+//           <td>中文、英文、中英文、泰语、印尼语、日语、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、哈萨克语</td>
 //
 //         </tr>
 //
@@ -2347,9 +2305,7 @@ func NewGeneralBasicOCRResponse() (response *GeneralBasicOCRResponse) {
 //
 //           <td>支持</td>
 //
-//           <td>支持</td>
-//
-//           <td>支持</td>
+//           <td>中英文支持；其他语种需要调整输入参数</td>
 //
 //         </tr>
 //
@@ -2361,15 +2317,11 @@ func NewGeneralBasicOCRResponse() (response *GeneralBasicOCRResponse) {
 //
 //           <td>支持</td>
 //
-//           <td>支持</td>
-//
 //         </tr>
 //
 //         <tr>
 //
 //           <td>自动旋转纠正</td>
-//
-//           <td>支持旋转识别，返回角度信息</td>
 //
 //           <td>支持旋转识别，返回角度信息</td>
 //
@@ -2426,11 +2378,9 @@ func (c *Client) GeneralBasicOCR(request *GeneralBasicOCRRequest) (response *Gen
 //
 //           <th style="width:150px"></th>
 //
-//           <th style="width:200px">【荐】通用印刷体识别</th>
+//           <th style="width:250px">【荐】通用印刷体识别</th>
 //
 //           <th ><a href="https://cloud.tencent.com/document/product/866/34937">【荐】通用印刷体识别（高精度版）</a></th>
-//
-//           <th><a href="https://cloud.tencent.com/document/product/866/37831">通用印刷体识别（精简版）</a></th>
 //
 //         </tr>
 //
@@ -2446,8 +2396,6 @@ func (c *Client) GeneralBasicOCR(request *GeneralBasicOCRRequest) (response *Gen
 //
 //           <td>适用于文字较多、长串数字、小字、模糊字、倾斜文本等困难场景</td>
 //
-//           <td>适用于快速文本识别场景，准召率有一定损失，价格更优惠</td>
-//
 //         </tr>
 //
 //         <tr>
@@ -2458,19 +2406,15 @@ func (c *Client) GeneralBasicOCR(request *GeneralBasicOCRRequest) (response *Gen
 //
 //           <td>99%</td>
 //
-//           <td>91%</td>
-//
 //         </tr>
 //
 //         <tr>
 //
 //           <td>价格</td>
 //
-//           <td>中</td>
-//
-//           <td>高</td>
-//
 //           <td>低</td>
+//
+//           <td>中</td>
 //
 //         </tr>
 //
@@ -2480,9 +2424,7 @@ func (c *Client) GeneralBasicOCR(request *GeneralBasicOCRRequest) (response *Gen
 //
 //           <td>中文、英文、中英文、日语、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、泰语</td>
 //
-//           <td>中文、英文、中英文</td>
-//
-//           <td>中文、英文、中英文</td>
+//           <td>中文、英文、中英文、泰语、印尼语、日语、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、哈萨克语</td>
 //
 //         </tr>
 //
@@ -2492,9 +2434,7 @@ func (c *Client) GeneralBasicOCR(request *GeneralBasicOCRRequest) (response *Gen
 //
 //           <td>支持</td>
 //
-//           <td>支持</td>
-//
-//           <td>支持</td>
+//           <td>中英文支持；其他语种需要调整输入参数</td>
 //
 //         </tr>
 //
@@ -2506,15 +2446,11 @@ func (c *Client) GeneralBasicOCR(request *GeneralBasicOCRRequest) (response *Gen
 //
 //           <td>支持</td>
 //
-//           <td>支持</td>
-//
 //         </tr>
 //
 //         <tr>
 //
 //           <td>自动旋转纠正</td>
-//
-//           <td>支持旋转识别，返回角度信息</td>
 //
 //           <td>支持旋转识别，返回角度信息</td>
 //
@@ -4181,9 +4117,9 @@ func NewMLIDPassportOCRResponse() (response *MLIDPassportOCRResponse) {
 }
 
 // MLIDPassportOCR
-// 本接口支持以及其他国家、地区的护照识别。识别字段包括护照ID、姓名、出生日期、性别、有效期、发行国、国籍、国家地区代码，具备护照人像照片的裁剪功能和翻拍、复印件告警功能。
+// 本接口支持中国大陆地区及中国港澳台地区、其他国家以及地区的护照识别。识别字段包括护照ID、姓名、出生日期、性别、有效期、发行国、国籍、国家地区代码，具备护照人像照片的裁剪功能和翻拍、复印件告警功能。
 //
-// 本接口支持地区范围：可机读护照国家。包括中国港澳台地区、新加坡、马来西亚、泰国、美国、韩国、越南、澳大利亚、缅甸、印度尼西亚、日本、加拿大、老挝、巴基斯坦、哈萨克斯坦、法国、英国、德国、菲律宾、新西兰、印度、意大利、蒙古、孟加拉国、尼日利亚、柬埔寨、西班牙、摩洛哥、吉尔吉斯斯坦、埃及、荷兰、塔吉克斯坦、巴西、乌兹别克斯坦、伊拉克、阿尔及利亚、土耳其、南非、墨西哥、尼泊尔、白俄罗斯、叶门、阿富汗、沙特、肯尼亚、波兰、比利时、瑞典、奥地利、坦桑尼亚、委内瑞拉、阿根廷、喀麦隆、斯里兰卡、衣索比亚、约旦、瑞士、加纳、爱尔兰、哥伦比亚、苏丹、匈牙利、罗马尼亚、阿联酋、文莱、希腊、以色列、巴拿马、丹麦、伊朗、乌干达、挪威、秘鲁、葡萄牙、智利、塞尔维亚、芬兰、尚比亚、亚美尼亚、叙利亚、黎巴嫩、斯洛伐克、卡塔尔、古巴、朝鲜。
+// 本接口支持地区范围：可机读护照国家。包括中国大陆地区、中国港澳台地区、新加坡、马来西亚、泰国、美国、韩国、越南、澳大利亚、缅甸、印度尼西亚、日本、加拿大、老挝、巴基斯坦、哈萨克斯坦、法国、英国、德国、菲律宾、新西兰、印度、意大利、蒙古、孟加拉国、尼日利亚、柬埔寨、西班牙、摩洛哥、吉尔吉斯斯坦、埃及、荷兰、塔吉克斯坦、巴西、乌兹别克斯坦、伊拉克、阿尔及利亚、土耳其、南非、墨西哥、尼泊尔、白俄罗斯、叶门、阿富汗、沙特、肯尼亚、波兰、比利时、瑞典、奥地利、坦桑尼亚、委内瑞拉、阿根廷、喀麦隆、斯里兰卡、衣索比亚、约旦、瑞士、加纳、爱尔兰、哥伦比亚、苏丹、匈牙利、罗马尼亚、阿联酋、文莱、希腊、以色列、巴拿马、丹麦、伊朗、乌干达、挪威、秘鲁、葡萄牙、智利、塞尔维亚、芬兰、尚比亚、亚美尼亚、叙利亚、黎巴嫩、斯洛伐克、卡塔尔、古巴、朝鲜。
 //
 // 
 //
@@ -4209,9 +4145,9 @@ func (c *Client) MLIDPassportOCR(request *MLIDPassportOCRRequest) (response *MLI
 }
 
 // MLIDPassportOCR
-// 本接口支持以及其他国家、地区的护照识别。识别字段包括护照ID、姓名、出生日期、性别、有效期、发行国、国籍、国家地区代码，具备护照人像照片的裁剪功能和翻拍、复印件告警功能。
+// 本接口支持中国大陆地区及中国港澳台地区、其他国家以及地区的护照识别。识别字段包括护照ID、姓名、出生日期、性别、有效期、发行国、国籍、国家地区代码，具备护照人像照片的裁剪功能和翻拍、复印件告警功能。
 //
-// 本接口支持地区范围：可机读护照国家。包括中国港澳台地区、新加坡、马来西亚、泰国、美国、韩国、越南、澳大利亚、缅甸、印度尼西亚、日本、加拿大、老挝、巴基斯坦、哈萨克斯坦、法国、英国、德国、菲律宾、新西兰、印度、意大利、蒙古、孟加拉国、尼日利亚、柬埔寨、西班牙、摩洛哥、吉尔吉斯斯坦、埃及、荷兰、塔吉克斯坦、巴西、乌兹别克斯坦、伊拉克、阿尔及利亚、土耳其、南非、墨西哥、尼泊尔、白俄罗斯、叶门、阿富汗、沙特、肯尼亚、波兰、比利时、瑞典、奥地利、坦桑尼亚、委内瑞拉、阿根廷、喀麦隆、斯里兰卡、衣索比亚、约旦、瑞士、加纳、爱尔兰、哥伦比亚、苏丹、匈牙利、罗马尼亚、阿联酋、文莱、希腊、以色列、巴拿马、丹麦、伊朗、乌干达、挪威、秘鲁、葡萄牙、智利、塞尔维亚、芬兰、尚比亚、亚美尼亚、叙利亚、黎巴嫩、斯洛伐克、卡塔尔、古巴、朝鲜。
+// 本接口支持地区范围：可机读护照国家。包括中国大陆地区、中国港澳台地区、新加坡、马来西亚、泰国、美国、韩国、越南、澳大利亚、缅甸、印度尼西亚、日本、加拿大、老挝、巴基斯坦、哈萨克斯坦、法国、英国、德国、菲律宾、新西兰、印度、意大利、蒙古、孟加拉国、尼日利亚、柬埔寨、西班牙、摩洛哥、吉尔吉斯斯坦、埃及、荷兰、塔吉克斯坦、巴西、乌兹别克斯坦、伊拉克、阿尔及利亚、土耳其、南非、墨西哥、尼泊尔、白俄罗斯、叶门、阿富汗、沙特、肯尼亚、波兰、比利时、瑞典、奥地利、坦桑尼亚、委内瑞拉、阿根廷、喀麦隆、斯里兰卡、衣索比亚、约旦、瑞士、加纳、爱尔兰、哥伦比亚、苏丹、匈牙利、罗马尼亚、阿联酋、文莱、希腊、以色列、巴拿马、丹麦、伊朗、乌干达、挪威、秘鲁、葡萄牙、智利、塞尔维亚、芬兰、尚比亚、亚美尼亚、叙利亚、黎巴嫩、斯洛伐克、卡塔尔、古巴、朝鲜。
 //
 // 
 //

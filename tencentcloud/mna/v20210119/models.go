@@ -2951,6 +2951,26 @@ func (r *OrderFlowPackageResponse) FromJsonString(s string) error {
 	return json.Unmarshal([]byte(s), &r)
 }
 
+type OrderInfo struct {
+	// 父帐号uin
+	Uin *string `json:"Uin,omitnil,omitempty" name:"Uin"`
+
+	// 项目id
+	ProjectId *string `json:"ProjectId,omitnil,omitempty" name:"ProjectId"`
+
+	// 用量类型
+	PackageType *string `json:"PackageType,omitnil,omitempty" name:"PackageType"`
+
+	// 订单编号唯一标识符
+	OrderId *string `json:"OrderId,omitnil,omitempty" name:"OrderId"`
+
+	// 上报月份，默认当前月
+	ReportMonth *string `json:"ReportMonth,omitnil,omitempty" name:"ReportMonth"`
+
+	// 数据更新时间
+	Updated *string `json:"Updated,omitnil,omitempty" name:"Updated"`
+}
+
 // Predefined struct for user
 type OrderPerLicenseRequestParams struct {
 	// 购买永久授权License的设备ID，如果是厂商未激活设备采用HardwareId
@@ -2959,7 +2979,7 @@ type OrderPerLicenseRequestParams struct {
 	// 设备类型，0: SDK，1: CPE，作为用户创建或激活设备时传0，作为厂商创建待激活设备时传1
 	Type *int64 `json:"Type,omitnil,omitempty" name:"Type"`
 
-	// 购买失败后是否回滚（删除）设备，默认true，如果设备绑定了生效中的流量包则不能回滚。
+	// 购买失败后是否回滚（删除）设备，默认false，如果设备绑定了生效中的流量包则不能回滚。
 	RollBack *bool `json:"RollBack,omitnil,omitempty" name:"RollBack"`
 
 	// 是否自动选择代金券，默认false。
@@ -2980,7 +3000,7 @@ type OrderPerLicenseRequest struct {
 	// 设备类型，0: SDK，1: CPE，作为用户创建或激活设备时传0，作为厂商创建待激活设备时传1
 	Type *int64 `json:"Type,omitnil,omitempty" name:"Type"`
 
-	// 购买失败后是否回滚（删除）设备，默认true，如果设备绑定了生效中的流量包则不能回滚。
+	// 购买失败后是否回滚（删除）设备，默认false，如果设备绑定了生效中的流量包则不能回滚。
 	RollBack *bool `json:"RollBack,omitnil,omitempty" name:"RollBack"`
 
 	// 是否自动选择代金券，默认false。
@@ -3037,6 +3057,84 @@ func (r *OrderPerLicenseResponse) ToJsonString() string {
 // FromJsonString It is highly **NOT** recommended to use this function
 // because it has no param check, nor strict type check
 func (r *OrderPerLicenseResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &r)
+}
+
+// Predefined struct for user
+type ReportOrderRequestParams struct {
+	// 订单编号唯一标识符
+	OrderId *string `json:"OrderId,omitnil,omitempty" name:"OrderId"`
+
+	// 项目id
+	ProjectId *string `json:"ProjectId,omitnil,omitempty" name:"ProjectId"`
+
+	// 用量类型
+	PackageType *string `json:"PackageType,omitnil,omitempty" name:"PackageType"`
+
+	// 上报月份，默认当前月
+	ReportMonth *string `json:"ReportMonth,omitnil,omitempty" name:"ReportMonth"`
+}
+
+type ReportOrderRequest struct {
+	*tchttp.BaseRequest
+	
+	// 订单编号唯一标识符
+	OrderId *string `json:"OrderId,omitnil,omitempty" name:"OrderId"`
+
+	// 项目id
+	ProjectId *string `json:"ProjectId,omitnil,omitempty" name:"ProjectId"`
+
+	// 用量类型
+	PackageType *string `json:"PackageType,omitnil,omitempty" name:"PackageType"`
+
+	// 上报月份，默认当前月
+	ReportMonth *string `json:"ReportMonth,omitnil,omitempty" name:"ReportMonth"`
+}
+
+func (r *ReportOrderRequest) ToJsonString() string {
+    b, _ := json.Marshal(r)
+    return string(b)
+}
+
+// FromJsonString It is highly **NOT** recommended to use this function
+// because it has no param check, nor strict type check
+func (r *ReportOrderRequest) FromJsonString(s string) error {
+	f := make(map[string]interface{})
+	if err := json.Unmarshal([]byte(s), &f); err != nil {
+		return err
+	}
+	delete(f, "OrderId")
+	delete(f, "ProjectId")
+	delete(f, "PackageType")
+	delete(f, "ReportMonth")
+	if len(f) > 0 {
+		return tcerr.NewTencentCloudSDKError("ClientError.BuildRequestError", "ReportOrderRequest has unknown keys!", "")
+	}
+	return json.Unmarshal([]byte(s), &r)
+}
+
+// Predefined struct for user
+type ReportOrderResponseParams struct {
+	// 订单信息
+	OrderInfo *OrderInfo `json:"OrderInfo,omitnil,omitempty" name:"OrderInfo"`
+
+	// 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+	RequestId *string `json:"RequestId,omitnil,omitempty" name:"RequestId"`
+}
+
+type ReportOrderResponse struct {
+	*tchttp.BaseResponse
+	Response *ReportOrderResponseParams `json:"Response"`
+}
+
+func (r *ReportOrderResponse) ToJsonString() string {
+    b, _ := json.Marshal(r)
+    return string(b)
+}
+
+// FromJsonString It is highly **NOT** recommended to use this function
+// because it has no param check, nor strict type check
+func (r *ReportOrderResponse) FromJsonString(s string) error {
 	return json.Unmarshal([]byte(s), &r)
 }
 
