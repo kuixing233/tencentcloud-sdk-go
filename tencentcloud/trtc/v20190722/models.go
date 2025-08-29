@@ -100,6 +100,10 @@ type AgentConfig struct {
 	// - 0表示尽快显示，不会和音频播放进行同步。此时字幕全量下发，后面的字幕会包含前面的字幕。
 	// - 1表示句子级别的实时显示，会和音频播放进行同步，只有当前句子对应的音频播放完后，下一条字幕才会下发。此时字幕增量下发，端上需要把前后的字幕进行拼接才是完整字幕。
 	SubtitleMode *uint64 `json:"SubtitleMode,omitnil,omitempty" name:"SubtitleMode"`
+
+	// 打断词列表，在AI说话期间，只有说出列表中的打断词才会打断AI说话。
+	// 注意：打断词不会触发AI回复。
+	InterruptWordList []*string `json:"InterruptWordList,omitnil,omitempty" name:"InterruptWordList"`
 }
 
 type AgentParams struct {
@@ -4545,7 +4549,7 @@ type ModerationParams struct {
 	// 第三方审核商送审需要配置信息
 	ModerationSupplierParam *ModerationSupplierParam `json:"ModerationSupplierParam,omitnil,omitempty" name:"ModerationSupplierParam"`
 
-	// 是否保存命中文件 0 默认不保存  1 保存命中文件
+	// 是否保存文件  0不保存文件 1保存所有文件 2仅保存命中文件
 	SaveModerationFile *uint64 `json:"SaveModerationFile,omitnil,omitempty" name:"SaveModerationFile"`
 
 	// 是否回调所有审核结果:
@@ -7419,7 +7423,7 @@ type UpdateStreamIngestRequestParams struct {
 	// 音量，取值范围[0, 100]，默认100，表示原音量。
 	Volume *uint64 `json:"Volume,omitnil,omitempty" name:"Volume"`
 
-	// 是否暂停，默认false表示不暂停。暂停期间任务仍在进行中仍会计费，如果要销毁任务请调用停止接口。
+	// 是否暂停，默认false表示不暂停。暂停期间任务仍在进行中仍会计费，暂停超过12小时会自动销毁任务, 建议主动调用停止任务接口。
 	IsPause *bool `json:"IsPause,omitnil,omitempty" name:"IsPause"`
 }
 
@@ -7438,7 +7442,7 @@ type UpdateStreamIngestRequest struct {
 	// 音量，取值范围[0, 100]，默认100，表示原音量。
 	Volume *uint64 `json:"Volume,omitnil,omitempty" name:"Volume"`
 
-	// 是否暂停，默认false表示不暂停。暂停期间任务仍在进行中仍会计费，如果要销毁任务请调用停止接口。
+	// 是否暂停，默认false表示不暂停。暂停期间任务仍在进行中仍会计费，暂停超过12小时会自动销毁任务, 建议主动调用停止任务接口。
 	IsPause *bool `json:"IsPause,omitnil,omitempty" name:"IsPause"`
 }
 

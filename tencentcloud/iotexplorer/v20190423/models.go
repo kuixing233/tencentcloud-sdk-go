@@ -2785,6 +2785,14 @@ type CreateTWeSeeRecognitionTaskRequestParams struct {
 
 	// 摘要输出配置
 	SummaryConfig *VisionSummaryConfig `json:"SummaryConfig,omitnil,omitempty" name:"SummaryConfig"`
+
+	// 算法类型，可能取值：
+	// - `Summary`：视频/图片摘要
+	// - `ObjectDetect`：目标检测
+	ServiceType *string `json:"ServiceType,omitnil,omitempty" name:"ServiceType"`
+
+	// 目标检测配置
+	ObjectDetectConfig *VisionObjectDetectConfig `json:"ObjectDetectConfig,omitnil,omitempty" name:"ObjectDetectConfig"`
 }
 
 type CreateTWeSeeRecognitionTaskRequest struct {
@@ -2831,6 +2839,14 @@ type CreateTWeSeeRecognitionTaskRequest struct {
 
 	// 摘要输出配置
 	SummaryConfig *VisionSummaryConfig `json:"SummaryConfig,omitnil,omitempty" name:"SummaryConfig"`
+
+	// 算法类型，可能取值：
+	// - `Summary`：视频/图片摘要
+	// - `ObjectDetect`：目标检测
+	ServiceType *string `json:"ServiceType,omitnil,omitempty" name:"ServiceType"`
+
+	// 目标检测配置
+	ObjectDetectConfig *VisionObjectDetectConfig `json:"ObjectDetectConfig,omitnil,omitempty" name:"ObjectDetectConfig"`
 }
 
 func (r *CreateTWeSeeRecognitionTaskRequest) ToJsonString() string {
@@ -2857,6 +2873,8 @@ func (r *CreateTWeSeeRecognitionTaskRequest) FromJsonString(s string) error {
 	delete(f, "InputType")
 	delete(f, "SummaryQOS")
 	delete(f, "SummaryConfig")
+	delete(f, "ServiceType")
+	delete(f, "ObjectDetectConfig")
 	if len(f) > 0 {
 		return tcerr.NewTencentCloudSDKError("ClientError.BuildRequestError", "CreateTWeSeeRecognitionTaskRequest has unknown keys!", "")
 	}
@@ -2885,6 +2903,88 @@ func (r *CreateTWeSeeRecognitionTaskResponse) ToJsonString() string {
 // FromJsonString It is highly **NOT** recommended to use this function
 // because it has no param check, nor strict type check
 func (r *CreateTWeSeeRecognitionTaskResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &r)
+}
+
+// Predefined struct for user
+type CreateTWeTalkProductConfigRequestParams struct {
+	// 产品ID
+	ProductId *string `json:"ProductId,omitnil,omitempty" name:"ProductId"`
+
+	// 系统提示词
+	SystemPrompt *string `json:"SystemPrompt,omitnil,omitempty" name:"SystemPrompt"`
+
+	// 欢迎语
+	GreetingMessage *string `json:"GreetingMessage,omitnil,omitempty" name:"GreetingMessage"`
+
+	// 音色，支持的音色列表：100510000-阅读男声智逍遥；101001-情感女声智瑜；101002-通用女声智聆；101003-客服女声智美；101004-通用男声智云；101005-通用女声智莉；101006-助手女声智言；101008-客服女声智琪；101009-知性女声智芸；101010-通用男声智华；101011-新闻女声智燕；101012-新闻女声智丹；101013-新闻男声智辉；101014 -新闻男声智宁；101015-男童声智萌；101016-女童声智甜；101017-情感女声智蓉；101018-情感男声智靖；101019-粤语女声智彤。
+	VoiceType *int64 `json:"VoiceType,omitnil,omitempty" name:"VoiceType"`
+
+	// 支持的语言，zh-中文；en-英文；默认zh
+	TargetLanguage *string `json:"TargetLanguage,omitnil,omitempty" name:"TargetLanguage"`
+}
+
+type CreateTWeTalkProductConfigRequest struct {
+	*tchttp.BaseRequest
+	
+	// 产品ID
+	ProductId *string `json:"ProductId,omitnil,omitempty" name:"ProductId"`
+
+	// 系统提示词
+	SystemPrompt *string `json:"SystemPrompt,omitnil,omitempty" name:"SystemPrompt"`
+
+	// 欢迎语
+	GreetingMessage *string `json:"GreetingMessage,omitnil,omitempty" name:"GreetingMessage"`
+
+	// 音色，支持的音色列表：100510000-阅读男声智逍遥；101001-情感女声智瑜；101002-通用女声智聆；101003-客服女声智美；101004-通用男声智云；101005-通用女声智莉；101006-助手女声智言；101008-客服女声智琪；101009-知性女声智芸；101010-通用男声智华；101011-新闻女声智燕；101012-新闻女声智丹；101013-新闻男声智辉；101014 -新闻男声智宁；101015-男童声智萌；101016-女童声智甜；101017-情感女声智蓉；101018-情感男声智靖；101019-粤语女声智彤。
+	VoiceType *int64 `json:"VoiceType,omitnil,omitempty" name:"VoiceType"`
+
+	// 支持的语言，zh-中文；en-英文；默认zh
+	TargetLanguage *string `json:"TargetLanguage,omitnil,omitempty" name:"TargetLanguage"`
+}
+
+func (r *CreateTWeTalkProductConfigRequest) ToJsonString() string {
+    b, _ := json.Marshal(r)
+    return string(b)
+}
+
+// FromJsonString It is highly **NOT** recommended to use this function
+// because it has no param check, nor strict type check
+func (r *CreateTWeTalkProductConfigRequest) FromJsonString(s string) error {
+	f := make(map[string]interface{})
+	if err := json.Unmarshal([]byte(s), &f); err != nil {
+		return err
+	}
+	delete(f, "ProductId")
+	delete(f, "SystemPrompt")
+	delete(f, "GreetingMessage")
+	delete(f, "VoiceType")
+	delete(f, "TargetLanguage")
+	if len(f) > 0 {
+		return tcerr.NewTencentCloudSDKError("ClientError.BuildRequestError", "CreateTWeTalkProductConfigRequest has unknown keys!", "")
+	}
+	return json.Unmarshal([]byte(s), &r)
+}
+
+// Predefined struct for user
+type CreateTWeTalkProductConfigResponseParams struct {
+	// 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+	RequestId *string `json:"RequestId,omitnil,omitempty" name:"RequestId"`
+}
+
+type CreateTWeTalkProductConfigResponse struct {
+	*tchttp.BaseResponse
+	Response *CreateTWeTalkProductConfigResponseParams `json:"Response"`
+}
+
+func (r *CreateTWeTalkProductConfigResponse) ToJsonString() string {
+    b, _ := json.Marshal(r)
+    return string(b)
+}
+
+// FromJsonString It is highly **NOT** recommended to use this function
+// because it has no param check, nor strict type check
+func (r *CreateTWeTalkProductConfigResponse) FromJsonString(s string) error {
 	return json.Unmarshal([]byte(s), &r)
 }
 
@@ -7966,6 +8066,138 @@ func (r *DescribeTWeSeeConfigResponse) FromJsonString(s string) error {
 }
 
 // Predefined struct for user
+type DescribeTWeSeeRecognitionTaskRequestParams struct {
+	// 任务 ID
+	TaskId *string `json:"TaskId,omitnil,omitempty" name:"TaskId"`
+
+	// 下载 URL 的过期时间。
+	// 
+	// 若传入该参数，则响应中将包含所有文件的下载 URL
+	FileURLExpireTime *int64 `json:"FileURLExpireTime,omitnil,omitempty" name:"FileURLExpireTime"`
+}
+
+type DescribeTWeSeeRecognitionTaskRequest struct {
+	*tchttp.BaseRequest
+	
+	// 任务 ID
+	TaskId *string `json:"TaskId,omitnil,omitempty" name:"TaskId"`
+
+	// 下载 URL 的过期时间。
+	// 
+	// 若传入该参数，则响应中将包含所有文件的下载 URL
+	FileURLExpireTime *int64 `json:"FileURLExpireTime,omitnil,omitempty" name:"FileURLExpireTime"`
+}
+
+func (r *DescribeTWeSeeRecognitionTaskRequest) ToJsonString() string {
+    b, _ := json.Marshal(r)
+    return string(b)
+}
+
+// FromJsonString It is highly **NOT** recommended to use this function
+// because it has no param check, nor strict type check
+func (r *DescribeTWeSeeRecognitionTaskRequest) FromJsonString(s string) error {
+	f := make(map[string]interface{})
+	if err := json.Unmarshal([]byte(s), &f); err != nil {
+		return err
+	}
+	delete(f, "TaskId")
+	delete(f, "FileURLExpireTime")
+	if len(f) > 0 {
+		return tcerr.NewTencentCloudSDKError("ClientError.BuildRequestError", "DescribeTWeSeeRecognitionTaskRequest has unknown keys!", "")
+	}
+	return json.Unmarshal([]byte(s), &r)
+}
+
+// Predefined struct for user
+type DescribeTWeSeeRecognitionTaskResponseParams struct {
+	// 任务信息
+	TaskInfo *VisionRecognitionTask `json:"TaskInfo,omitnil,omitempty" name:"TaskInfo"`
+
+	// 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+	RequestId *string `json:"RequestId,omitnil,omitempty" name:"RequestId"`
+}
+
+type DescribeTWeSeeRecognitionTaskResponse struct {
+	*tchttp.BaseResponse
+	Response *DescribeTWeSeeRecognitionTaskResponseParams `json:"Response"`
+}
+
+func (r *DescribeTWeSeeRecognitionTaskResponse) ToJsonString() string {
+    b, _ := json.Marshal(r)
+    return string(b)
+}
+
+// FromJsonString It is highly **NOT** recommended to use this function
+// because it has no param check, nor strict type check
+func (r *DescribeTWeSeeRecognitionTaskResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &r)
+}
+
+// Predefined struct for user
+type DescribeTWeTalkProductConfigRequestParams struct {
+	// 产品ID
+	ProductId *string `json:"ProductId,omitnil,omitempty" name:"ProductId"`
+
+	// 支持的语言，zh-中文；en-英文；默认zh
+	TargetLanguage *string `json:"TargetLanguage,omitnil,omitempty" name:"TargetLanguage"`
+}
+
+type DescribeTWeTalkProductConfigRequest struct {
+	*tchttp.BaseRequest
+	
+	// 产品ID
+	ProductId *string `json:"ProductId,omitnil,omitempty" name:"ProductId"`
+
+	// 支持的语言，zh-中文；en-英文；默认zh
+	TargetLanguage *string `json:"TargetLanguage,omitnil,omitempty" name:"TargetLanguage"`
+}
+
+func (r *DescribeTWeTalkProductConfigRequest) ToJsonString() string {
+    b, _ := json.Marshal(r)
+    return string(b)
+}
+
+// FromJsonString It is highly **NOT** recommended to use this function
+// because it has no param check, nor strict type check
+func (r *DescribeTWeTalkProductConfigRequest) FromJsonString(s string) error {
+	f := make(map[string]interface{})
+	if err := json.Unmarshal([]byte(s), &f); err != nil {
+		return err
+	}
+	delete(f, "ProductId")
+	delete(f, "TargetLanguage")
+	if len(f) > 0 {
+		return tcerr.NewTencentCloudSDKError("ClientError.BuildRequestError", "DescribeTWeTalkProductConfigRequest has unknown keys!", "")
+	}
+	return json.Unmarshal([]byte(s), &r)
+}
+
+// Predefined struct for user
+type DescribeTWeTalkProductConfigResponseParams struct {
+	// 配置信息
+	Data *TalkProductConfigInfo `json:"Data,omitnil,omitempty" name:"Data"`
+
+	// 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+	RequestId *string `json:"RequestId,omitnil,omitempty" name:"RequestId"`
+}
+
+type DescribeTWeTalkProductConfigResponse struct {
+	*tchttp.BaseResponse
+	Response *DescribeTWeTalkProductConfigResponseParams `json:"Response"`
+}
+
+func (r *DescribeTWeTalkProductConfigResponse) ToJsonString() string {
+    b, _ := json.Marshal(r)
+    return string(b)
+}
+
+// FromJsonString It is highly **NOT** recommended to use this function
+// because it has no param check, nor strict type check
+func (r *DescribeTWeTalkProductConfigResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &r)
+}
+
+// Predefined struct for user
 type DescribeTopicPolicyRequestParams struct {
 	// 产品ID
 	ProductId *string `json:"ProductId,omitnil,omitempty" name:"ProductId"`
@@ -10077,6 +10309,87 @@ func (r *GetTWeCallActiveStatusResponse) FromJsonString(s string) error {
 }
 
 // Predefined struct for user
+type GetTWeTalkProductConfigListRequestParams struct {
+	// 产品ID
+	ProductId *string `json:"ProductId,omitnil,omitempty" name:"ProductId"`
+
+	// 	支持的语言，zh-中文；en-英文；默认zh
+	TargetLanguage *string `json:"TargetLanguage,omitnil,omitempty" name:"TargetLanguage"`
+
+	// 页码
+	Offset *uint64 `json:"Offset,omitnil,omitempty" name:"Offset"`
+
+	// 偏移量，10-100
+	Limit *uint64 `json:"Limit,omitnil,omitempty" name:"Limit"`
+}
+
+type GetTWeTalkProductConfigListRequest struct {
+	*tchttp.BaseRequest
+	
+	// 产品ID
+	ProductId *string `json:"ProductId,omitnil,omitempty" name:"ProductId"`
+
+	// 	支持的语言，zh-中文；en-英文；默认zh
+	TargetLanguage *string `json:"TargetLanguage,omitnil,omitempty" name:"TargetLanguage"`
+
+	// 页码
+	Offset *uint64 `json:"Offset,omitnil,omitempty" name:"Offset"`
+
+	// 偏移量，10-100
+	Limit *uint64 `json:"Limit,omitnil,omitempty" name:"Limit"`
+}
+
+func (r *GetTWeTalkProductConfigListRequest) ToJsonString() string {
+    b, _ := json.Marshal(r)
+    return string(b)
+}
+
+// FromJsonString It is highly **NOT** recommended to use this function
+// because it has no param check, nor strict type check
+func (r *GetTWeTalkProductConfigListRequest) FromJsonString(s string) error {
+	f := make(map[string]interface{})
+	if err := json.Unmarshal([]byte(s), &f); err != nil {
+		return err
+	}
+	delete(f, "ProductId")
+	delete(f, "TargetLanguage")
+	delete(f, "Offset")
+	delete(f, "Limit")
+	if len(f) > 0 {
+		return tcerr.NewTencentCloudSDKError("ClientError.BuildRequestError", "GetTWeTalkProductConfigListRequest has unknown keys!", "")
+	}
+	return json.Unmarshal([]byte(s), &r)
+}
+
+// Predefined struct for user
+type GetTWeTalkProductConfigListResponseParams struct {
+	// 配置信息列表
+	Data []*TalkProductConfigInfo `json:"Data,omitnil,omitempty" name:"Data"`
+
+	// 总数
+	Total *int64 `json:"Total,omitnil,omitempty" name:"Total"`
+
+	// 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+	RequestId *string `json:"RequestId,omitnil,omitempty" name:"RequestId"`
+}
+
+type GetTWeTalkProductConfigListResponse struct {
+	*tchttp.BaseResponse
+	Response *GetTWeTalkProductConfigListResponseParams `json:"Response"`
+}
+
+func (r *GetTWeTalkProductConfigListResponse) ToJsonString() string {
+    b, _ := json.Marshal(r)
+    return string(b)
+}
+
+// FromJsonString It is highly **NOT** recommended to use this function
+// because it has no param check, nor strict type check
+func (r *GetTWeTalkProductConfigListResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &r)
+}
+
+// Predefined struct for user
 type GetTopicRuleListRequestParams struct {
 	// 请求的页数
 	PageNum *int64 `json:"PageNum,omitnil,omitempty" name:"PageNum"`
@@ -10798,6 +11111,14 @@ type InvokeTWeSeeRecognitionTaskRequestParams struct {
 
 	// 摘要输出配置
 	SummaryConfig *VisionSummaryConfig `json:"SummaryConfig,omitnil,omitempty" name:"SummaryConfig"`
+
+	// 算法类型，可能取值：
+	// - `Summary`：视频/图片摘要
+	// - `ObjectDetect`：目标检测
+	ServiceType *string `json:"ServiceType,omitnil,omitempty" name:"ServiceType"`
+
+	// 目标检测配置
+	ObjectDetectConfig *VisionObjectDetectConfig `json:"ObjectDetectConfig,omitnil,omitempty" name:"ObjectDetectConfig"`
 }
 
 type InvokeTWeSeeRecognitionTaskRequest struct {
@@ -10844,6 +11165,14 @@ type InvokeTWeSeeRecognitionTaskRequest struct {
 
 	// 摘要输出配置
 	SummaryConfig *VisionSummaryConfig `json:"SummaryConfig,omitnil,omitempty" name:"SummaryConfig"`
+
+	// 算法类型，可能取值：
+	// - `Summary`：视频/图片摘要
+	// - `ObjectDetect`：目标检测
+	ServiceType *string `json:"ServiceType,omitnil,omitempty" name:"ServiceType"`
+
+	// 目标检测配置
+	ObjectDetectConfig *VisionObjectDetectConfig `json:"ObjectDetectConfig,omitnil,omitempty" name:"ObjectDetectConfig"`
 }
 
 func (r *InvokeTWeSeeRecognitionTaskRequest) ToJsonString() string {
@@ -10870,6 +11199,8 @@ func (r *InvokeTWeSeeRecognitionTaskRequest) FromJsonString(s string) error {
 	delete(f, "InputType")
 	delete(f, "SummaryQOS")
 	delete(f, "SummaryConfig")
+	delete(f, "ServiceType")
+	delete(f, "ObjectDetectConfig")
 	if len(f) > 0 {
 		return tcerr.NewTencentCloudSDKError("ClientError.BuildRequestError", "InvokeTWeSeeRecognitionTaskRequest has unknown keys!", "")
 	}
@@ -12656,6 +12987,88 @@ func (r *ModifyTWeSeeConfigResponse) FromJsonString(s string) error {
 }
 
 // Predefined struct for user
+type ModifyTWeTalkProductConfigRequestParams struct {
+	// 产品ID
+	ProductId *string `json:"ProductId,omitnil,omitempty" name:"ProductId"`
+
+	// 系统提示词
+	SystemPrompt *string `json:"SystemPrompt,omitnil,omitempty" name:"SystemPrompt"`
+
+	// 欢迎语
+	GreetingMessage *string `json:"GreetingMessage,omitnil,omitempty" name:"GreetingMessage"`
+
+	// 音色，支持的音色列表：100510000-阅读男声智逍遥；101001-情感女声智瑜；101002-通用女声智聆；101003-客服女声智美；101004-通用男声智云；101005-通用女声智莉；101006-助手女声智言；101008-客服女声智琪；101009-知性女声智芸；101010-通用男声智华；101011-新闻女声智燕；101012-新闻女声智丹；101013-新闻男声智辉；101014 -新闻男声智宁；101015-男童声智萌；101016-女童声智甜；101017-情感女声智蓉；101018-情感男声智靖；101019-粤语女声智彤。
+	VoiceType *int64 `json:"VoiceType,omitnil,omitempty" name:"VoiceType"`
+
+	// 支持的语言，zh-中文；en-英文；默认zh
+	TargetLanguage *string `json:"TargetLanguage,omitnil,omitempty" name:"TargetLanguage"`
+}
+
+type ModifyTWeTalkProductConfigRequest struct {
+	*tchttp.BaseRequest
+	
+	// 产品ID
+	ProductId *string `json:"ProductId,omitnil,omitempty" name:"ProductId"`
+
+	// 系统提示词
+	SystemPrompt *string `json:"SystemPrompt,omitnil,omitempty" name:"SystemPrompt"`
+
+	// 欢迎语
+	GreetingMessage *string `json:"GreetingMessage,omitnil,omitempty" name:"GreetingMessage"`
+
+	// 音色，支持的音色列表：100510000-阅读男声智逍遥；101001-情感女声智瑜；101002-通用女声智聆；101003-客服女声智美；101004-通用男声智云；101005-通用女声智莉；101006-助手女声智言；101008-客服女声智琪；101009-知性女声智芸；101010-通用男声智华；101011-新闻女声智燕；101012-新闻女声智丹；101013-新闻男声智辉；101014 -新闻男声智宁；101015-男童声智萌；101016-女童声智甜；101017-情感女声智蓉；101018-情感男声智靖；101019-粤语女声智彤。
+	VoiceType *int64 `json:"VoiceType,omitnil,omitempty" name:"VoiceType"`
+
+	// 支持的语言，zh-中文；en-英文；默认zh
+	TargetLanguage *string `json:"TargetLanguage,omitnil,omitempty" name:"TargetLanguage"`
+}
+
+func (r *ModifyTWeTalkProductConfigRequest) ToJsonString() string {
+    b, _ := json.Marshal(r)
+    return string(b)
+}
+
+// FromJsonString It is highly **NOT** recommended to use this function
+// because it has no param check, nor strict type check
+func (r *ModifyTWeTalkProductConfigRequest) FromJsonString(s string) error {
+	f := make(map[string]interface{})
+	if err := json.Unmarshal([]byte(s), &f); err != nil {
+		return err
+	}
+	delete(f, "ProductId")
+	delete(f, "SystemPrompt")
+	delete(f, "GreetingMessage")
+	delete(f, "VoiceType")
+	delete(f, "TargetLanguage")
+	if len(f) > 0 {
+		return tcerr.NewTencentCloudSDKError("ClientError.BuildRequestError", "ModifyTWeTalkProductConfigRequest has unknown keys!", "")
+	}
+	return json.Unmarshal([]byte(s), &r)
+}
+
+// Predefined struct for user
+type ModifyTWeTalkProductConfigResponseParams struct {
+	// 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+	RequestId *string `json:"RequestId,omitnil,omitempty" name:"RequestId"`
+}
+
+type ModifyTWeTalkProductConfigResponse struct {
+	*tchttp.BaseResponse
+	Response *ModifyTWeTalkProductConfigResponseParams `json:"Response"`
+}
+
+func (r *ModifyTWeTalkProductConfigResponse) ToJsonString() string {
+    b, _ := json.Marshal(r)
+    return string(b)
+}
+
+// FromJsonString It is highly **NOT** recommended to use this function
+// because it has no param check, nor strict type check
+func (r *ModifyTWeTalkProductConfigResponse) FromJsonString(s string) error {
+	return json.Unmarshal([]byte(s), &r)
+}
+
+// Predefined struct for user
 type ModifyTopicPolicyRequestParams struct {
 	// 产品ID
 	ProductId *string `json:"ProductId,omitnil,omitempty" name:"ProductId"`
@@ -14246,6 +14659,29 @@ type TWeCallLicenseInfo struct {
 	UsedNum *int64 `json:"UsedNum,omitnil,omitempty" name:"UsedNum"`
 }
 
+type TalkProductConfigInfo struct {
+	// 产品ID
+	ProductId *string `json:"ProductId,omitnil,omitempty" name:"ProductId"`
+
+	// 支持的语言，zh-中文；en-英文；默认zh
+	TargetLanguage *string `json:"TargetLanguage,omitnil,omitempty" name:"TargetLanguage"`
+
+	//  系统提示词
+	SystemPrompt *string `json:"SystemPrompt,omitnil,omitempty" name:"SystemPrompt"`
+
+	// 欢迎语
+	GreetingMessage *string `json:"GreetingMessage,omitnil,omitempty" name:"GreetingMessage"`
+
+	// 音色，支持的音色列表：100510000-阅读男声智逍遥；101001-情感女声智瑜；101002-通用女声智聆；101003-客服女声智美；101004-通用男声智云；101005-通用女声智莉；101006-助手女声智言；101008-客服女声智琪；101009-知性女声智芸；101010-通用男声智华；101011-新闻女声智燕；101012-新闻女声智丹；101013-新闻男声智辉；101014 -新闻男声智宁；101015-男童声智萌；101016-女童声智甜；101017-情感女声智蓉；101018-情感男声智靖；101019-粤语女声智彤。
+	VoiceType *int64 `json:"VoiceType,omitnil,omitempty" name:"VoiceType"`
+
+	// 创建时间
+	CreateTime *int64 `json:"CreateTime,omitnil,omitempty" name:"CreateTime"`
+
+	// 更新时间
+	UpdateTime *int64 `json:"UpdateTime,omitnil,omitempty" name:"UpdateTime"`
+}
+
 type TargetInfo struct {
 	// 视频唯一ID
 	Id *string `json:"Id,omitnil,omitempty" name:"Id"`
@@ -15000,6 +15436,13 @@ type VideoLicenseEntity struct {
 	ExpiresSoonCount *int64 `json:"ExpiresSoonCount,omitnil,omitempty" name:"ExpiresSoonCount"`
 }
 
+type VisionObjectDetectConfig struct {
+	// 检测类别，可选值：
+	// - `adult`：成年人
+	// - `child`：儿童
+	DetectTypes []*string `json:"DetectTypes,omitnil,omitempty" name:"DetectTypes"`
+}
+
 type VisionRecognitionResult struct {
 	// 任务状态（1：分析失败；2：下载/读取视频/图片失败；3：成功；4：执行中）
 	Status *int64 `json:"Status,omitnil,omitempty" name:"Status"`
@@ -15027,6 +15470,53 @@ type VisionRecognitionResult struct {
 	// - `DownloadFailed`：下载视频/图片文件失败
 	// - `ReadFailed`：读取视频/图片文件失败
 	ErrorCode *string `json:"ErrorCode,omitnil,omitempty" name:"ErrorCode"`
+}
+
+type VisionRecognitionTask struct {
+	// 云存 AI 服务任务 ID
+	TaskId *string `json:"TaskId,omitnil,omitempty" name:"TaskId"`
+
+	// 产品 ID
+	ProductId *string `json:"ProductId,omitnil,omitempty" name:"ProductId"`
+
+	// 设备名称
+	DeviceName *string `json:"DeviceName,omitnil,omitempty" name:"DeviceName"`
+
+	// 通道 ID
+	ChannelId *uint64 `json:"ChannelId,omitnil,omitempty" name:"ChannelId"`
+
+	// 对应云存视频的起始时间（秒级 UNIX 时间戳）
+	StartTime *int64 `json:"StartTime,omitnil,omitempty" name:"StartTime"`
+
+	// 对应云存视频的起始时间（毫秒级 UNIX 时间戳）
+	StartTimeMs *int64 `json:"StartTimeMs,omitnil,omitempty" name:"StartTimeMs"`
+
+	// 对应云存视频的结束时间（秒级 UNIX 时间戳）
+	EndTime *int64 `json:"EndTime,omitnil,omitempty" name:"EndTime"`
+
+	// 对应云存视频的结束时间（毫秒级 UNIX 时间戳）
+	EndTimeMs *int64 `json:"EndTimeMs,omitnil,omitempty" name:"EndTimeMs"`
+
+	// 任务状态（1：分析失败；2：下载/读取视频/图片失败；3：成功；4：执行中）
+	Status *uint64 `json:"Status,omitnil,omitempty" name:"Status"`
+
+	// 任务结果
+	Result *VisionRecognitionResult `json:"Result,omitnil,omitempty" name:"Result"`
+
+	// 创建时间
+	CreateTime *int64 `json:"CreateTime,omitnil,omitempty" name:"CreateTime"`
+
+	// 最后更新时间
+	UpdateTime *int64 `json:"UpdateTime,omitnil,omitempty" name:"UpdateTime"`
+
+	// 自定义任务 ID
+	CustomId *string `json:"CustomId,omitnil,omitempty" name:"CustomId"`
+
+	// 任务输出文件列表
+	Files []*string `json:"Files,omitnil,omitempty" name:"Files"`
+
+	// 任务输出文件信息列表
+	FilesInfo []*CloudStorageAIServiceTaskFileInfo `json:"FilesInfo,omitnil,omitempty" name:"FilesInfo"`
 }
 
 type VisionSummaryConfig struct {

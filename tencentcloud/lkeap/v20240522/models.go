@@ -1076,11 +1076,22 @@ type DocumentUsage struct {
 
 	// 解析失败页数
 	FailPageNum *int64 `json:"FailPageNum,omitnil,omitempty" name:"FailPageNum"`
+
+	// 文件大小，单位：字节
+	FileSize *int64 `json:"FileSize,omitnil,omitempty" name:"FileSize"`
 }
 
 type EmbeddingObject struct {
 	// 向量
 	Embedding []*float64 `json:"Embedding,omitnil,omitempty" name:"Embedding"`
+}
+
+type ErrorInfo struct {
+	// 错误码
+	Code *string `json:"Code,omitnil,omitempty" name:"Code"`
+
+	// 错误信息
+	Message *string `json:"Message,omitnil,omitempty" name:"Message"`
 }
 
 // Predefined struct for user
@@ -1264,6 +1275,9 @@ type GetReconstructDocumentResultResponseParams struct {
 	// 文档拆分任务的用量	
 	Usage *DocumentUsage `json:"Usage,omitnil,omitempty" name:"Usage"`
 
+	// 文档解析任务失败错误信息，当文档解析任务失败会返回具体的错误信息
+	Error *ErrorInfo `json:"Error,omitnil,omitempty" name:"Error"`
+
 	// 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
 	RequestId *string `json:"RequestId,omitnil,omitempty" name:"RequestId"`
 }
@@ -1347,6 +1361,9 @@ type GetSplitDocumentResultResponseParams struct {
 
 	// 文档拆分任务的用量
 	Usage *DocumentUsage `json:"Usage,omitnil,omitempty" name:"Usage"`
+
+	// 文档拆分失败的错误信息，当拆分任务失败时返回该错误信息
+	Error *ErrorInfo `json:"Error,omitnil,omitempty" name:"Error"`
 
 	// 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
 	RequestId *string `json:"RequestId,omitnil,omitempty" name:"RequestId"`
@@ -1882,20 +1899,26 @@ type QaItem struct {
 
 // Predefined struct for user
 type QueryRewriteRequestParams struct {
-	// 需要改写的多轮历史会话，每轮历史对话需要包含user（问）和assistant（答）成对输入，由于模型字符限制，最多提供4轮对话。针对最后一轮对话进行改写
+	// 说明：需要改写的多轮历史会话，每轮历史对话需要包含user（问）和assistant（答）成对输入
+	// 备注：由于模型字符限制，最多提供4轮对话。针对最后一轮对话进行改写。四轮对话最多包含3600个字符。
 	Messages []*Message `json:"Messages,omitnil,omitempty" name:"Messages"`
 
-	// 模型名称
+	// 说明：模型名称
+	// 备注：仅一个模型可选
+	// 默认值：lke-query-rewrite-base
 	Model *string `json:"Model,omitnil,omitempty" name:"Model"`
 }
 
 type QueryRewriteRequest struct {
 	*tchttp.BaseRequest
 	
-	// 需要改写的多轮历史会话，每轮历史对话需要包含user（问）和assistant（答）成对输入，由于模型字符限制，最多提供4轮对话。针对最后一轮对话进行改写
+	// 说明：需要改写的多轮历史会话，每轮历史对话需要包含user（问）和assistant（答）成对输入
+	// 备注：由于模型字符限制，最多提供4轮对话。针对最后一轮对话进行改写。四轮对话最多包含3600个字符。
 	Messages []*Message `json:"Messages,omitnil,omitempty" name:"Messages"`
 
-	// 模型名称
+	// 说明：模型名称
+	// 备注：仅一个模型可选
+	// 默认值：lke-query-rewrite-base
 	Model *string `json:"Model,omitnil,omitempty" name:"Model"`
 }
 
@@ -2252,26 +2275,34 @@ func (r *RetrieveKnowledgeResponse) FromJsonString(s string) error {
 
 // Predefined struct for user
 type RunRerankRequestParams struct {
-	// 查询内容
+	// 说明：查询内容
+	// 备注：用于匹配的query
 	Query *string `json:"Query,omitnil,omitempty" name:"Query"`
 
-	// 文档列表，最多20个
+	// 说明：文档列表
+	// 备注：最多60个，Query字段和Docs字段的总长度上限为2000字符
 	Docs []*string `json:"Docs,omitnil,omitempty" name:"Docs"`
 
-	// 模型名称, 默认: lke-reranker-base
+	// 说明：模型名称
+	// 备注：仅一个模型可选
+	// 默认值：lke-reranker-base
 	Model *string `json:"Model,omitnil,omitempty" name:"Model"`
 }
 
 type RunRerankRequest struct {
 	*tchttp.BaseRequest
 	
-	// 查询内容
+	// 说明：查询内容
+	// 备注：用于匹配的query
 	Query *string `json:"Query,omitnil,omitempty" name:"Query"`
 
-	// 文档列表，最多20个
+	// 说明：文档列表
+	// 备注：最多60个，Query字段和Docs字段的总长度上限为2000字符
 	Docs []*string `json:"Docs,omitnil,omitempty" name:"Docs"`
 
-	// 模型名称, 默认: lke-reranker-base
+	// 说明：模型名称
+	// 备注：仅一个模型可选
+	// 默认值：lke-reranker-base
 	Model *string `json:"Model,omitnil,omitempty" name:"Model"`
 }
 
