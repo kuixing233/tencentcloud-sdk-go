@@ -10617,9 +10617,11 @@ type LogicBackupConfigInfo struct {
 	LogicBackupTimeEnd *uint64 `json:"LogicBackupTimeEnd,omitnil,omitempty" name:"LogicBackupTimeEnd"`
 
 	// 自动逻辑备份保留时间
+	// 单位：秒
 	LogicReserveDuration *uint64 `json:"LogicReserveDuration,omitnil,omitempty" name:"LogicReserveDuration"`
 
 	// 是否开启跨地域逻辑备份
+	// 可选值：ON/OFF
 	LogicCrossRegionsEnable *string `json:"LogicCrossRegionsEnable,omitnil,omitempty" name:"LogicCrossRegionsEnable"`
 
 	// 逻辑备份所跨地域
@@ -12141,6 +12143,7 @@ type ModifyDBInstanceSecurityGroupsRequestParams struct {
 	InstanceId *string `json:"InstanceId,omitnil,omitempty" name:"InstanceId"`
 
 	// 要修改的安全组ID列表，一个或者多个安全组ID组成的数组。
+	// 注意：该入参会全量替换存量已有集合，非增量更新。修改需传入预期的全量集合。
 	SecurityGroupIds []*string `json:"SecurityGroupIds,omitnil,omitempty" name:"SecurityGroupIds"`
 
 	// 可用区
@@ -12154,6 +12157,7 @@ type ModifyDBInstanceSecurityGroupsRequest struct {
 	InstanceId *string `json:"InstanceId,omitnil,omitempty" name:"InstanceId"`
 
 	// 要修改的安全组ID列表，一个或者多个安全组ID组成的数组。
+	// 注意：该入参会全量替换存量已有集合，非增量更新。修改需传入预期的全量集合。
 	SecurityGroupIds []*string `json:"SecurityGroupIds,omitnil,omitempty" name:"SecurityGroupIds"`
 
 	// 可用区

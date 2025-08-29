@@ -733,6 +733,7 @@ func NewGetDevicePayModeResponse() (response *GetDevicePayModeResponse) {
 //  INTERNALERROR = "InternalError"
 //  INVALIDPARAMETER = "InvalidParameter"
 //  OPERATIONDENIED = "OperationDenied"
+//  OPERATIONDENIED_DEVICENOTFOUND = "OperationDenied.DeviceNotFound"
 func (c *Client) GetDevicePayMode(request *GetDevicePayModeRequest) (response *GetDevicePayModeResponse, err error) {
     return c.GetDevicePayModeWithContext(context.Background(), request)
 }
@@ -744,6 +745,7 @@ func (c *Client) GetDevicePayMode(request *GetDevicePayModeRequest) (response *G
 //  INTERNALERROR = "InternalError"
 //  INVALIDPARAMETER = "InvalidParameter"
 //  OPERATIONDENIED = "OperationDenied"
+//  OPERATIONDENIED_DEVICENOTFOUND = "OperationDenied.DeviceNotFound"
 func (c *Client) GetDevicePayModeWithContext(ctx context.Context, request *GetDevicePayModeRequest) (response *GetDevicePayModeResponse, err error) {
     if request == nil {
         request = NewGetDevicePayModeRequest()
@@ -1901,6 +1903,76 @@ func (c *Client) OrderPerLicenseWithContext(ctx context.Context, request *OrderP
     request.SetContext(ctx)
     
     response = NewOrderPerLicenseResponse()
+    err = c.Send(request, response)
+    return
+}
+
+func NewReportOrderRequest() (request *ReportOrderRequest) {
+    request = &ReportOrderRequest{
+        BaseRequest: &tchttp.BaseRequest{},
+    }
+    
+    request.Init().WithApiInfo("mna", APIVersion, "ReportOrder")
+    
+    
+    return
+}
+
+func NewReportOrderResponse() (response *ReportOrderResponse) {
+    response = &ReportOrderResponse{
+        BaseResponse: &tchttp.BaseResponse{},
+    } 
+    return
+
+}
+
+// ReportOrder
+// 用户上报自定义的订单信息，多网聚合加速服务将相关信息进行保存
+//
+// 可能返回的错误码:
+//  FAILEDOPERATION_TRANSACTIONEXCEPTION = "FailedOperation.TransactionException"
+//  INTERNALERROR = "InternalError"
+//  INVALIDPARAMETER = "InvalidParameter"
+//  OPERATIONDENIED = "OperationDenied"
+//  OPERATIONDENIED_DEVICENOTFOUND = "OperationDenied.DeviceNotFound"
+//  OPERATIONDENIED_INSUFFICIENTBALANCE = "OperationDenied.InsufficientBalance"
+//  OPERATIONDENIED_NOTALLOWEDTOPAY = "OperationDenied.NotAllowedToPay"
+//  OPERATIONDENIED_REPEATPURCHASE = "OperationDenied.RepeatPurchase"
+//  OPERATIONDENIED_UNAUTHORIZEDUSER = "OperationDenied.UnauthorizedUser"
+//  UNAUTHORIZEDOPERATION = "UnauthorizedOperation"
+//  UNAUTHORIZEDOPERATION_NOPERMISSION = "UnauthorizedOperation.NoPermission"
+func (c *Client) ReportOrder(request *ReportOrderRequest) (response *ReportOrderResponse, err error) {
+    return c.ReportOrderWithContext(context.Background(), request)
+}
+
+// ReportOrder
+// 用户上报自定义的订单信息，多网聚合加速服务将相关信息进行保存
+//
+// 可能返回的错误码:
+//  FAILEDOPERATION_TRANSACTIONEXCEPTION = "FailedOperation.TransactionException"
+//  INTERNALERROR = "InternalError"
+//  INVALIDPARAMETER = "InvalidParameter"
+//  OPERATIONDENIED = "OperationDenied"
+//  OPERATIONDENIED_DEVICENOTFOUND = "OperationDenied.DeviceNotFound"
+//  OPERATIONDENIED_INSUFFICIENTBALANCE = "OperationDenied.InsufficientBalance"
+//  OPERATIONDENIED_NOTALLOWEDTOPAY = "OperationDenied.NotAllowedToPay"
+//  OPERATIONDENIED_REPEATPURCHASE = "OperationDenied.RepeatPurchase"
+//  OPERATIONDENIED_UNAUTHORIZEDUSER = "OperationDenied.UnauthorizedUser"
+//  UNAUTHORIZEDOPERATION = "UnauthorizedOperation"
+//  UNAUTHORIZEDOPERATION_NOPERMISSION = "UnauthorizedOperation.NoPermission"
+func (c *Client) ReportOrderWithContext(ctx context.Context, request *ReportOrderRequest) (response *ReportOrderResponse, err error) {
+    if request == nil {
+        request = NewReportOrderRequest()
+    }
+    c.InitBaseRequest(&request.BaseRequest, "mna", APIVersion, "ReportOrder")
+    
+    if c.GetCredential() == nil {
+        return nil, errors.New("ReportOrder require credential")
+    }
+
+    request.SetContext(ctx)
+    
+    response = NewReportOrderResponse()
     err = c.Send(request, response)
     return
 }
