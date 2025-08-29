@@ -23,8 +23,8 @@ func main() {
 	cpf.HttpProfile.ReqMethod = "GET"
 	cpf.HttpProfile.ReqTimeout = 5
 	// cpf.HttpProfile.Endpoint = "localhost:9091" // 需设置request.SetHeader
-	// cpf.HttpProfile.Endpoint = "localhost:9091/"           // 需设置request.SetHeader
-	cpf.HttpProfile.Endpoint = "localhost:9091/tencentcdn/" // 需改配置
+	// cpf.HttpProfile.Endpoint = "localhost:9091/" // 需设置request.SetHeader
+	cpf.HttpProfile.Endpoint = "localhost:9091/tencentapi_proxy" // 需改配置
 	// cpf.HttpProfile.Endpoint = "cvm.tencentcloud.com" // 需改配置
 	// cpf.HttpProfile.Endpoint = "cvm.tencentcloud.com:9091" // 需改配置
 	// cpf.HttpProfile.Endpoint = "cvm.tencentcloud.com:9091/tencentcdn" // 需改配置
@@ -33,7 +33,7 @@ func main() {
 	// cpf.HttpProfile.ApigwEndpoint = "localhost:9091/tencentcdn"
 	// cpf.HttpProfile.Endpoint = "cvm.tencentcloudapi.com:9091"
 
-	cpf.HttpProfile.Scheme = "HTTPS"
+	cpf.HttpProfile.Scheme = "HTTP"
 	cpf.Debug = true
 
 	// 实例化要请求产品(以cvm为例)的client对象
@@ -42,6 +42,7 @@ func main() {
 	request := cvm.NewDescribeZonesRequest()
 	request.SetHeader(map[string]string{
 		"Host": "cvm.tencentcloudapi.com",
+		"X-Target": "https://cvm.tencentcloudapi.com/",
 	})
 	// 通过client对象调用想要访问的接口，需要传入请求对象
 	response, err := client.DescribeZones(request)
